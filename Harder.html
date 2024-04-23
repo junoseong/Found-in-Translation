@@ -13,34 +13,31 @@
             margin: 0;
         }
         .main-button {
-            position: fixed; /* Position the button relative to the viewport */
-            top: 25vh; /* Adjust the top position as needed */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%) translateY(20px); /* Center horizontally and move down */
+            position: fixed;
+            top: 25vh;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
             cursor: pointer;
-            /* Set the width and height of the main button */
-            width: 700px; /* Adjust the width as needed */
-            height: auto; /* Maintain aspect ratio */
-            z-index: 1; /* Ensure the main button is on top of other elements */
-            transition: transform 0.3s; /* Add transition effect */
-            transform-origin: center; /* Set the transform origin to the center */
+            width: 700px;
+            height: auto;
+            z-index: 1;
+            transition: transform 0.3s;
+            transform-origin: center;
         }
         .image-container {
-            position: fixed; /* Position the container relative to the viewport */
-            bottom: 25vh; /* Adjust the bottom position as needed */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Center horizontally */
+            position: fixed;
+            bottom: 25vh;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            /* Set the width and height of the container */
-            width: 80%; /* Adjust the width as needed */
-            /* You can adjust the height if needed or remove it to let it be determined by the content */
+            width: 80%; 
             height: auto;
         }
         .image {
             margin: 10px;
             cursor: pointer;
             border-radius: 8px;
-            transition: transform 0.3s; /* Add transition effect */
+            transition: transform 0.3s;
             /* Set the width and height of the images */
             width: 100px; /* Adjust the width as needed */
             height: auto; /* Maintain aspect ratio */
@@ -70,19 +67,19 @@
 </head>
 <body>
     <!-- Drum music -->
-    <audio id="drum-music" src="/Users/junoseong/Documents/App/Sound/drumm.mp3" preload="auto" volume="0.4" loop></audio>
+    <audio id="drum-music" src="Sound/drumm.mp3" preload="auto" volume="0.4" loop></audio>
 
     <!-- New image acting as a button -->
-    <img class="main-button" src="/Users/junoseong/Documents/App/Layer 3.png" alt="Main Button" id="main-button">
+    <img class="main-button" src="Images/Layer 3.png" alt="Main Button" id="main-button">
     
     <div class="image-container">
-        <img class="image" src="/Users/junoseong/Documents/App/Layer 4.png" alt="Image 1" data-key="1" data-audio="/Users/junoseong/Documents/App/Sound/1.mp3">
-        <img class="image" src="/Users/junoseong/Documents/App/Layer 5.png" alt="Image 2" data-key="2" data-audio="/Users/junoseong/Documents/App/Sound/2.mp3">
-        <img class="image" src="/Users/junoseong/Documents/App/Layer 6.png" alt="Image 3" data-key="3" data-audio="/Users/junoseong/Documents/App/Sound/3.mp3">
-        <img class="image" src="/Users/junoseong/Documents/App/Layer 7.png" alt="Image 4" data-key="4" data-audio="/Users/junoseong/Documents/App/Sound/4.mp3">
-        <img class="image" src="/Users/junoseong/Documents/App/Layer 8.png" alt="Image 5" data-key="5" data-audio="/Users/junoseong/Documents/App/Sound/5.mp3">
-        <img class="image" src="/Users/junoseong/Documents/App/Layer 9.png" alt="Image 6" data-key="6" data-audio="/Users/junoseong/Documents/App/Sound/6.mp3">
-        <img class="image" src="/Users/junoseong/Documents/App/Layer 10.png" alt="Image 7" data-key="7" data-audio="/Users/junoseong/Documents/App/Sound/7.mp3">
+        <img class="image" src="Images/Layer 4.png" alt="Image 1" data-key="1" data-audio="/Users/junoseong/Documents/App/Sound/1.mp3">
+        <img class="image" src="Images/Layer 5.png" alt="Image 2" data-key="2" data-audio="/Users/junoseong/Documents/App/Sound/2.mp3">
+        <img class="image" src="Images/Layer 6.png" alt="Image 3" data-key="3" data-audio="/Users/junoseong/Documents/App/Sound/3.mp3">
+        <img class="image" src="Images/Layer 7.png" alt="Image 4" data-key="4" data-audio="/Users/junoseong/Documents/App/Sound/4.mp3">
+        <img class="image" src="Images/Layer 8.png" alt="Image 5" data-key="5" data-audio="/Users/junoseong/Documents/App/Sound/5.mp3">
+        <img class="image" src="Images/Layer 9.png" alt="Image 6" data-key="6" data-audio="/Users/junoseong/Documents/App/Sound/6.mp3">
+        <img class="image" src="Images/Layer 10.png" alt="Image 7" data-key="7" data-audio="/Users/junoseong/Documents/App/Sound/7.mp3">
     </div>
 
     <!-- Button to toggle drum music -->
@@ -120,7 +117,7 @@
         // JavaScript can be used to add functionality to the main button image
         document.getElementById("main-button").addEventListener("click", function() {
             // Replace the alert with audio playback
-            const audio = new Audio('/Users/junoseong/Documents/App/Sound/entire.mp3'); // Specify the path to your main button audio file
+            const audio = new Audio('Sound/entire.mp3'); // Specify the path to your main button audio file
             audio.play(); // Play the audio
         });
 

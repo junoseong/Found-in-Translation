@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stronger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .main-button {
+            position: fixed; /* Position the button relative to the viewport */
+            top: 25vh; /* Adjust the top position as needed */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%) translateY(20px); /* Center horizontally and move down */
+            cursor: pointer;
+            /* Set the width and height of the main button */
+            width: 700px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            z-index: 1; /* Ensure the main button is on top of other elements */
+            transition: transform 0.3s; /* Add transition effect */
+            transform-origin: center; /* Set the transform origin to the center */
+        }
+        .image-container {
+            position: fixed; /* Position the container relative to the viewport */
+            bottom: 25vh; /* Adjust the bottom position as needed */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+            text-align: center;
+            /* Set the width and height of the container */
+            width: 80%; /* Adjust the width as needed */
+            /* You can adjust the height if needed or remove it to let it be determined by the content */
+            height: auto;
+        }
+        .image {
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s; /* Add transition effect */
+            /* Set the width and height of the images */
+            width: 100px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            z-index: 0; /* Ensure images are behind the main button */
+        }
+        .image:hover {
+            transform: scale(1.1); /* Scale up on hover */
+        }
+        .image.clicked {
+            transform: scale(1.1); /* Scale up when clicked */
+        }
+        .toggle-drum-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 0;
+            width: 40px; /* Set the width of the button */
+            height: 40px; /* Set the height of the button */
+            background-image: url('/Users/junoseong/Documents/App/drum-icon.webp'); /* Replace '/path/to/drum-button-image.png' with the path to your image */
+            background-size: 40px 40px; /* Set the background image size to match the button width and height */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Drum music -->
+    <audio id="drum-music" src="/Users/junoseong/Documents/App/Sound/drumm.mp3" preload="auto" volume="0.4" loop></audio>
+
+    <!-- New image acting as a button -->
+    <img class="main-button" src="/Users/junoseong/Documents/App/Layer 3.png" alt="Main Button" id="main-button">
+    
+    <div class="image-container">
+        <img class="image" src="/Users/junoseong/Documents/App/Layer 4.png" alt="Image 1" data-key="1" data-audio="/Users/junoseong/Documents/App/Sound/1.mp3">
+        <img class="image" src="/Users/junoseong/Documents/App/Layer 5.png" alt="Image 2" data-key="2" data-audio="/Users/junoseong/Documents/App/Sound/2.mp3">
+        <img class="image" src="/Users/junoseong/Documents/App/Layer 6.png" alt="Image 3" data-key="3" data-audio="/Users/junoseong/Documents/App/Sound/3.mp3">
+        <img class="image" src="/Users/junoseong/Documents/App/Layer 7.png" alt="Image 4" data-key="4" data-audio="/Users/junoseong/Documents/App/Sound/4.mp3">
+        <img class="image" src="/Users/junoseong/Documents/App/Layer 8.png" alt="Image 5" data-key="5" data-audio="/Users/junoseong/Documents/App/Sound/5.mp3">
+        <img class="image" src="/Users/junoseong/Documents/App/Layer 9.png" alt="Image 6" data-key="6" data-audio="/Users/junoseong/Documents/App/Sound/6.mp3">
+        <img class="image" src="/Users/junoseong/Documents/App/Layer 10.png" alt="Image 7" data-key="7" data-audio="/Users/junoseong/Documents/App/Sound/7.mp3">
+    </div>
+
+    <!-- Button to toggle drum music -->
+    <button class="toggle-drum-button" id="toggle-drum-button"></button>
+
+    <script>
+        let consecutiveClicks = 0;
+        const easterEggClicks = 7;
+
+        // JavaScript to handle image click based on keypress
+        document.addEventListener("keydown", function(event) {
+            const key = event.key;
+            const imageKey = document.querySelector(`[data-key="${key}"]`);
+            if (imageKey) {
+                imageKey.classList.add("clicked");
+                const audio = new Audio(imageKey.dataset.audio);
+                audio.play(); 
+                setTimeout(() => {
+                    imageKey.classList.remove("clicked");
+                }, 300);
+
+                if (imageKey.dataset.key === "7") {
+                    consecutiveClicks++;
+                    if (consecutiveClicks === easterEggClicks) {
+                        window.open("https://youtu.be/PsO6ZnUZI0g?si=BtvYEcN5UhFsO9xi"); // Open a different window for the easter egg
+                        consecutiveClicks = 0; // Reset consecutive clicks
+                        document.getElementById("drum-music").pause(); // Pause drum music
+                    }
+                } else {
+                    consecutiveClicks = 0; // Reset consecutive clicks if image clicked is not 7
+                }
+            }
+        });
+
+        // JavaScript can be used to add functionality to the main button image
+        document.getElementById("main-button").addEventListener("click", function() {
+            // Replace the alert with audio playback
+            const audio = new Audio('/Users/junoseong/Documents/App/Sound/entire.mp3'); // Specify the path to your main button audio file
+            audio.play(); // Play the audio
+        });
+
+        // JavaScript can also be used to add functionality to the other images
+        document.querySelectorAll(".image").forEach(function(image) {
+            image.addEventListener("click", function() {
+                // Handle image click here
+                // Replace the alert with audio playback
+                const audio = new Audio(this.dataset.audio); // Get the path to the audio file from the data-audio attribute
+                audio.play(); // Play the audio
+            });
+        });
+
+        // Toggle drum music on/off
+        document.getElementById("toggle-drum-button").addEventListener("click", function() {
+            const drumMusic = document.getElementById("drum-music");
+            if (drumMusic.paused) {
+                drumMusic.volume = 0.3; // Set volume to 40%
+                drumMusic.play(); // Play drum music if it's not playing
+            } else {
+                drumMusic.pause(); // Pause drum music if it's playing
+            }
+        });
+
+        // Reset drum music playback position to beginning when it ends
+        document.getElementById("drum-music").addEventListener("ended", function() {
+            this.currentTime = 0;
+            this.play();
+        });
+    </script>
+</body>
+</html>
